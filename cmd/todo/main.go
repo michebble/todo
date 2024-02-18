@@ -30,12 +30,7 @@ func main() {
 	switch {
 	case *list:
 		// List current ToDo items
-		for i, item := range *l {
-			if !item.Done {
-				pos := i + 1
-				fmt.Printf("%d. %s\n", pos, item.Task)
-			}
-		}
+		fmt.Print(l)
 	case *complete > 0:
 		// Complete the given item
 		if err := l.Complete(*complete); err != nil {

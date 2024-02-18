@@ -26,8 +26,8 @@ Displays the list of uncompleted tasks.
 
 ```
 $ ./todo -list
-1. Make coffee
-2. Have breakfast
+  1: Make coffee
+  2: Have breakfast
 ```
 
 --task
@@ -37,9 +37,9 @@ Add a task to the ToDo list
 ```
 $ ./todo --task "Clean teeth"
 $ ./todo -list
-1. Make coffee
-2. Have breakfast
-3. Clean teeth
+  1: Make coffee
+  2: Have breakfast
+  3: Clean teeth
 ```
 
 --complete
@@ -47,12 +47,9 @@ $ ./todo -list
 Marks the list at that position in the list as complete, removing it from the list
 
 ```
-$ ./todo -list
-1. Make coffee
-2. Have breakfast
-3. Clean teeth
 $ ./todo --complete 2
 $ ./todo -list
-1. Make coffee
-3. Clean teeth
+  1: Make coffee
+X 2: Have breakfast
+  3: Clean teeth
 ```
