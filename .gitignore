@@ -22,3 +22,4 @@ go.work
 
 # generated todo lists
 cmd/todo/*.json
+.todo.json
