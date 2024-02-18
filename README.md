@@ -53,3 +53,9 @@ $ ./todo -list
 X 2: Have breakfast
   3: Clean teeth
 ```
+
+By default the ToDo list will be saved in `.todo.json`, but a different file can be specified by setting the `TODO_FILENAME` ENV.
+
+```
+export TODO_FILENAME=my-todo.json
+```

@@ -8,10 +8,15 @@ import (
 	"github.com/michebble/todo"
 )
 
-// Hardcoding the file name
-const todoFileName = ".todo.json"
+// Default filename
+var todoFileName = ".todo.json"
 
 func main() {
+	// Check if the user defined the ENV VAR for a custom filename
+	if os.Getenv("TODO_FILENAME") != "" {
+		todoFileName = os.Getenv("TODO_FILENAME")
+	}
+
 	// Parsing command line flags
 	task := flag.String("task", "", "Task to be included in the ToDo list")
 	list := flag.Bool("list", false, "List all tasks")
