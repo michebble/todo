@@ -27,15 +27,23 @@ Displays the list of uncompleted tasks.
 ```
 $ ./todo -list
   1: Make coffee
-  2: Have breakfast
 ```
 
---task
+--add
 
 Add a task to the ToDo list
 
 ```
-$ ./todo --task "Clean teeth"
+$ ./todo --add Have breakfast
+$ ./todo -list
+  1: Make coffee
+  2: Have breakfast
+```
+
+Tasks can also be accepted via standard in
+
+```
+$ echo "Clean teeth" | ./todo -add
 $ ./todo -list
   1: Make coffee
   2: Have breakfast
@@ -44,7 +52,7 @@ $ ./todo -list
 
 --complete
 
-Marks the list at that position in the list as complete, removing it from the list
+Marks the task at that position in the list as complete
 
 ```
 $ ./todo --complete 2
