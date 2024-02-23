@@ -11,10 +11,9 @@ import (
 	"testing"
 )
 
-var (
-	binName  = "todo"
-	fileName = ".todo.json"
-)
+var binName = "todo"
+
+const fileName = ".test_todo.json"
 
 func TestMain(m *testing.M) {
 	fmt.Println("Building tool...")
@@ -29,6 +28,14 @@ func TestMain(m *testing.M) {
 		fmt.Fprintf(os.Stderr, "Cannot build tool %s: %s", binName, err)
 		os.Exit(1)
 	}
+
+	err := os.Setenv("TODO_FILENAME", fileName)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Cannot set TODO_FILENAME: %s", err)
+		os.Exit(1)
+	}
+
 	fmt.Println("Running tests...")
 	result := m.Run()
 
