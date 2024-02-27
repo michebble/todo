@@ -48,6 +48,7 @@ func TestMain(m *testing.M) {
 
 func TestToDoCLI(t *testing.T) {
 	task := "test task number1"
+	task2 := "test task number 2"
 
 	dir, err := os.Getwd()
 	if err != nil {
@@ -57,7 +58,6 @@ func TestToDoCLI(t *testing.T) {
 	cmdPath := filepath.Join(dir, binName)
 
 	t.Run("AddNewTask", func(t *testing.T) {
-
 		cmd := exec.Command(cmdPath, "-add", task)
 
 		if err := cmd.Run(); err != nil {
@@ -65,7 +65,6 @@ func TestToDoCLI(t *testing.T) {
 		}
 	})
 
-	task2 := "test task number 2"
 	t.Run("AddNewTaskFromSTDIN", func(t *testing.T) {
 		cmd := exec.Command(cmdPath, "-add")
 		cmdStdIn, err := cmd.StdinPipe()
@@ -99,7 +98,22 @@ func TestToDoCLI(t *testing.T) {
 		if err != nil {
 			t.Fatal((err))
 		}
+
 		expected := ""
+
+		if expected != string(out) {
+			t.Errorf("Expected %q, got %q instead\n", expected, string(out))
+		}
+	})
+
+	t.Run("ListTasksAfterCompletion", func(t *testing.T) {
+		cmd := exec.Command(cmdPath, "-list")
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			t.Fatal((err))
+		}
+
+		expected := fmt.Sprintf("X 1: %s\n  2: %s\n", task, task2)
 
 		if expected != string(out) {
 			t.Errorf("Expected %q, got %q instead\n", expected, string(out))
