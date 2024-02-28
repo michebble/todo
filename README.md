@@ -62,6 +62,17 @@ X 2: Have breakfast
   3: Clean teeth
 ```
 
+--delete
+
+Permanently removes the task at that position from the list
+
+```
+$ ./todo --delete 1
+$ ./todo -list
+X 1: Have breakfast
+  2: Clean teeth
+```
+
 By default the ToDo list will be saved in `.todo.json`, but a different file can be specified by setting the `TODO_FILENAME` ENV.
 
 ```
